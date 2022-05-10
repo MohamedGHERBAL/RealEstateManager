@@ -27,8 +27,6 @@
         </activity>
 
         <!-- SECOND ACTIVITY -->
-        <activity android:name="com.openclassrooms.realestatemanager.SecondActivity">
-        </activity>
 
     </application>
 

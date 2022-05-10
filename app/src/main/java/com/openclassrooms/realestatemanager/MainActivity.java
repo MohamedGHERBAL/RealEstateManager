@@ -31,4 +31,5 @@ public class MainActivity extends AppCompatActivity {
         this.textViewQuantity.setTextSize(20);
         this.textViewQuantity.setText(quantity+ "");
     }
+
 }
