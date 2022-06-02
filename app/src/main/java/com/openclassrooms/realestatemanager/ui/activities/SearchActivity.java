@@ -14,9 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.openclassrooms.realestatemanager.R;
+import com.openclassrooms.realestatemanager.databinding.ActivitySearchBinding;
 import com.openclassrooms.realestatemanager.injection.Injection;
 import com.openclassrooms.realestatemanager.injection.ViewModelFactory;
 import com.openclassrooms.realestatemanager.model.House;
+import com.openclassrooms.realestatemanager.ui.MainHostActivity;
 import com.openclassrooms.realestatemanager.viewmodel.RealEstateViewModel;
 
 import java.io.Serializable;
@@ -27,11 +29,21 @@ import java.util.List;
  */
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener, Serializable {
 
+    // For Log.d .i .e
+    private static final String TAG = MainHostActivity.class.getSimpleName();
+    //Log.i(TAG, "onCreate");
+
+    // For ViewBinding
+    private ActivitySearchBinding searchBinding;
+
+    // Variables
     public static final String BUNDLE_RESULT_LIST = "BUNDLE_RESULT_LIST";
     private static final long HOUSE_ID = 1;
+
+    // For View Model
     private RealEstateViewModel realEstateViewModel;
 
-    // For Data
+    // For DATAS
     private String district;
     private int miniPrice;
     private int maxiPrice;

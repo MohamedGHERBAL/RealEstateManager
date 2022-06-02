@@ -15,11 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.openclassrooms.realestatemanager.R;
@@ -217,6 +212,16 @@ public class MainHostActivity extends AppCompatActivity {
                     startActivity(intent);
                     return true;
 
+                case R.id.nav_drawer_convEurosToDollars:
+                    this.changeCurrencyToDollars(houseList);
+                    Toast.makeText(this, R.string.drawer_menu_changeToDollars, Toast.LENGTH_LONG).show();
+                    break;
+
+                case R.id.nav_drawer_convDollarsToEuros:
+                    this.changeCurrencyToEuro(houseList);
+                    Toast.makeText(this, R.string.drawer_menu_changeToEuros, Toast.LENGTH_LONG).show();
+                    break;
+
                 case R.id.nav_drawer_LoanSimulator:
                     startActivity(new Intent(getApplicationContext(), LoanSimulatorActivity.class));
                     return true;
@@ -270,6 +275,26 @@ public class MainHostActivity extends AppCompatActivity {
         this.id = house.getId();
     }
 
+    // Use for option on DrawerMenu to change Currency to Dollars ($)
+    private void changeCurrencyToDollars(List<House> houses) {
+        if (houses != null) {
+            for (House house : houses) {
+                long houseId = house.getId();
+                this.realEstateViewModel.updateIsEuro(false, houseId);
+            }
+        }
+    }
+
+    // Use for option on DrawerMenu to change Currency to Euros (€)
+    private void changeCurrencyToEuro(List<House> houses) {
+        if (houses != null) {
+            for (House house : houses) {
+                long houseId = house.getId();
+                this.realEstateViewModel.updateIsEuro(true, houseId);
+            }
+        }
+    }
+
     //----------------------------------------------------------------------------------------------
     // OTHERS
     //----------------------------------------------------------------------------------------------
@@ -285,9 +310,7 @@ public class MainHostActivity extends AppCompatActivity {
                 case SEARCH_ACTIVITY_REQUEST_CODE:
                     Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.frameLayout);
                     fragment.onActivityResult(requestCode, resultCode, data);
-
                     break;
-
 
                 case MAPS_ACTIVITY_REQUEST_CODE:
                     // Display house clicked on Smartphone
@@ -300,7 +323,6 @@ public class MainHostActivity extends AppCompatActivity {
                         detailsFragment.onActivityResult(requestCode, resultCode, data);
                     }
                     break;
-
             }
         }
     }

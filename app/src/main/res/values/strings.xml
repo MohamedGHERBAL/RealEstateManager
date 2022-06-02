@@ -17,6 +17,8 @@
     <!-- Drawer Menu -->
     <string name="drawer_menu_open">Open</string>
     <string name="drawer_menu_close">Close</string>
+    <string name="drawer_menu_changeToEuros">Change currency to Euros €</string>
+    <string name="drawer_menu_changeToDollars">Change currency to Dollars $</string>
 
     <!-- Notification Services -->
     <string name="notif_serv_house_success_title">House Saved</string>

@@ -8,12 +8,17 @@
             android:id="@+id/nav_drawer_MapView"
             android:icon="@drawable/ic_baseline_map_24"
             android:title="Map View" />
-<!--
+
+        <item
+            android:id="@+id/nav_drawer_convEurosToDollars"
+            android:icon="@drawable/ic_baseline_dollar_24"
+            android:title="Change Euros to Dollars" />
+
         <item
             android:id="@+id/nav_drawer_convDollarsToEuros"
             android:icon="@drawable/ic_baseline_euro_24"
-            android:title="Converter Dollars/Euros" />
--->
+            android:title="Change Dollars to Euros" />
+
         <item
             android:id="@+id/nav_drawer_LoanSimulator"
             android:icon="@drawable/ic_baseline_calculate_24"

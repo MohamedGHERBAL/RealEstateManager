@@ -24,7 +24,7 @@ public class RealEstateContentProvider extends ContentProvider {
     // For DATAS
     public static final String AUTHORITY = "com.openclassrooms.realestatemanager.provider";
     public static final String TABLE_NAME = House.class.getSimpleName();
-    public static final Uri URI_HOUSE = Uri.parse("content://" + AUTHORITY + "/" + TABLE_NAME);
+    public static final Uri URI_HOUSE = Uri.parse("content://" + AUTHORITY + "/" + TABLE_NAME); // For TEST
 
 
     @Override
