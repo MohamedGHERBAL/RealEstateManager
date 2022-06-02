@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="start"
+    tools:context=".ui.MainHostActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            app:menu="@menu/menu_toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/nav_host_fragment_item_detail" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_weight="30"
+                android:layout_width="0px"
+                android:layout_height="match_parent">
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/frameLayout_detail"
+                android:layout_weight="70"
+                android:layout_width="0px"
+                android:layout_height="match_parent">
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:paddingVertical="20dp"
+        app:headerLayout="@layout/header_drawer"
+        app:menu="@menu/menu_drawer"
+        app:itemHorizontalPadding="40dp"
+        app:itemIconPadding="30dp"
+        app:itemIconSize="20dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/AppTheme"
+        app:itemTextColor="@color/black"
+        android:background="@color/white"
+        app:itemTextAppearance="?android:attr/textAppearanceSmallInverse"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

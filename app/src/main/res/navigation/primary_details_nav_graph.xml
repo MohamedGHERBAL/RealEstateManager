@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
@@ -7,20 +8,25 @@
 
     <fragment
         android:id="@+id/item_list_fragment"
-        android:name="com.openclassrooms.realestatemanager.ItemListFragment"
-        android:label="ItemListFragment">
+        android:name="com.openclassrooms.realestatemanager.ui.fragment.ItemListFragment" >
+
         <action
             android:id="@+id/show_item_detail"
             app:destination="@id/item_detail_fragment" />
+
     </fragment>
+
     <fragment
         android:id="@+id/item_detail_fragment"
-        android:name="com.openclassrooms.realestatemanager.ItemDetailFragment"
+        android:name="com.openclassrooms.realestatemanager.ui.fragment.ItemDetailFragment"
         android:label="item_detail"
         tools:layout="@layout/fragment_item_detail">
+
         <argument
             android:name="item_id"
             android:defaultValue=""
             app:argType="string" />
+
     </fragment>
+
 </navigation>

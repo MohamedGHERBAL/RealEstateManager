@@ -1,6 +1,64 @@
 <resources>
     <string name="app_name">Real Estate Manager</string>
+    <string name="map_activity_name">Map View</string>
+    <string name="moneyconverter_activity_name">Money Converter</string>
+    <string name="loansimulator_activity_name">Loan Simulator</string>
+
     <string name="title_activity_item_detail_host">ItemDetailHostActivity</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- MainHostActivity -->
+    <string name="empty_house_list">No house for sale !</string>
+
+    <!-- Drawer Menu -->
+    <string name="drawer_menu_open">Open</string>
+    <string name="drawer_menu_close">Close</string>
+
+    <!-- Notification Services -->
+    <string name="notif_serv_house_success_title">House Saved</string>
+    <string name="notif_serv_house_success_msg">The house is correctly saved !</string>
+    <string name="notif_serv_house_fail_title">House not saved</string>
+    <string name="notif_serv_house_fail_msg">An error has occurred :(</string>
+
+    <!-- List Fragment -->
+    <string name="sold_the_date">SOLD THE </string>
+
+    <!-- Detail Fragment -->
+    <string name="no_network">You don\'t have network connexion !</string>
+
+    <string name="illustration_title">Illustration</string>
+    <string name="illust_textView">TextView</string>
+
+    <string name="surface">Surface</string>
+    <string name="number">007</string>
+    <string name="number_of_rooms">Number of rooms</string>
+    <string name="bedrooms">Number of bedrooms</string>
+    <string name="bathroom">Number of bathrooms</string>
+    <string name="location">Location</string>
+    <string name="address">Address</string>
+    <string name="address_detail">Address</string>
+    <string name="rooms">rooms</string>
+    <string name="description">Description</string>
+    <string name="description_detail">Anchored by a vast marble gallery with sweeping staircase, the entertaining floor includes a baronial living room facing Park Avenue,</string>
+    <string name="agent">Agent</string>
+    <string name="agent_name">James Bond</string>
+    <string name="sale_date">On-sale date</string>
+    <string name="sale_date_value">01/01/1970</string>
+
+    <!-- MapActivity -->
+    <string name="no_gps_message">Vous n\'êtes pas géolicalisé, Veuillez activé la géolocalisation pour utiliser correctement l\'application.</string>
+
+    <!-- LoanSimulatorActivity -->
+    <string name="title_loan_simulator">Loan Simulator</string>
+    <string name="interest_rate">Interest rate</string>
+    <string name="duration">Duration</string>
+    <string name="calculate">Calculate</string>
+    <string name="result">Result</string>
+    <string name="amont_monthly_payment">Amount of your monthly payments :</string>
+    <string name="cost_credit">Cost of credit</string>
+
 </resources>
