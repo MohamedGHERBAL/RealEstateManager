@@ -201,16 +201,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         this.getDataFromEditText();
 
         if (checkInput()) {
-            realEstateViewModel.getSearchedHouse(district,
-                    miniPrice,
-                    maxiPrice,
-                    miniArea,
-                    maxiArea,
-                    miniRoom,
-                    maxiRoom,
-                    school,
-                    shopping,
-                    publicTransport,
+            realEstateViewModel.getSearchedHouse(district, miniPrice, maxiPrice, miniArea, maxiArea,
+                    miniRoom, maxiRoom, school, shopping, publicTransport,
                     swimmingPool).observe(this, this::getSearchedList);
         }
     }

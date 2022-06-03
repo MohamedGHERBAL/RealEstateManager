@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -32,6 +33,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.databinding.ActivityMapBinding;
 import com.openclassrooms.realestatemanager.injection.Injection;
@@ -98,53 +101,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
-    // onMapReady
-    @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
-        Log.d(TAG, "onMapReady");
-
-        this.gMap = googleMap;
-        checkCondition();
-    }
-
-    //@SuppressLint("MissingPermission")
-    private void getCurrentLocation() {
-        Log.d(TAG, "getCurrentLocation");
-
-        // Initialize LocationManager
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        // Check Condition
-
-        // Get last location when location service is enabled
-        if (ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION) !=
-                PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(
-                        this, Manifest.permission.ACCESS_COARSE_LOCATION) !=
-                        PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(task -> {
-            // Initialize location
-            Location location = task.getResult();
-
-            // Check condition
-            if (location != null) {
-                double lat = location.getLatitude();
-                double lng = location.getLongitude();
-                currentLocation = new LatLng(lat, lng);
-            }
-        });
-    }
-
     // Check Condition
     private void checkCondition() {
         Log.d(TAG, "checkCondition");
@@ -160,20 +116,32 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         //alert();
     }
 
-    // Alert Message
-    public void alert() {
-        Log.i(TAG, "alert");
+    @SuppressLint("MissingPermission")
+    private void getCurrentLocation() {
+        Log.d(TAG, "getCurrentLocation");
 
-        AlertDialog.Builder builder;
-        builder = new AlertDialog.Builder(this);
-        builder.setTitle("Attention")
-                .setMessage("To use Go4Lunch you need to enable GPS first to use the app properly, do you want to activate it ?")
-                .setPositiveButton(android.R.string.yes, (dialog, which) -> startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
-                .setNegativeButton(android.R.string.no, (dialog, which) -> {
-                    // If you choose 'No' the app do nothing.
-                    Toast.makeText(this, R.string.no_gps_message, Toast.LENGTH_LONG).show();
-                })
-                .show();
+        // Initialize location manager
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        // Check condition
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+
+            // When location service is enabled
+            // Get Last Location
+            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    // Initialize location
+                    Location location = task.getResult();
+                    // Check Condition
+                    if (location != null) {
+                        double lat = location.getLatitude();
+                        double lng = location.getLongitude();
+                        currentLocation = new LatLng(lat, lng);
+                    }
+                }
+            });
+        }
     }
 
     // Set marker on MAP
@@ -209,7 +177,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             marker = gMap.addMarker(new MarkerOptions()
                     .position(currentLocation)
                     .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                    .title("Ma position"));
+                    .title("My location"));
             gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 12));
 
         } else if (houseLatLng != null) {
@@ -217,6 +185,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(houseLatLng, 12));
         }
+    }
+
+    // onMapReady
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        Log.d(TAG, "onMapReady");
+
+        this.gMap = googleMap;
+        checkCondition();
+        getAllHousesFromDatabase();
+        googleMap.setOnMarkerClickListener(this);
     }
 
     // Config click on marker
@@ -232,7 +211,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             setResult(RESULT_OK, intent);
             finish();
         } else {
-            Toast.makeText(this, "Ceci est ma position", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "My location", Toast.LENGTH_LONG).show();
         }
         return false;
     }
@@ -307,5 +286,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     //----------------------------------------------------------------------------------------------
     // OTHERS
     //----------------------------------------------------------------------------------------------
+
     // Nothin' !
 }

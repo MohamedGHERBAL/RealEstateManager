@@ -109,12 +109,12 @@ public class MainHostActivity extends AppCompatActivity {
     public void configureAndShowDetailFragment() {
         Log.i(TAG, "configureAndShowDetailFragment");
 
-        itemDetailFragment = (ItemDetailFragment) getSupportFragmentManager().findFragmentById(R.id.item_detail_nav_container);
+        itemDetailFragment = (ItemDetailFragment) getSupportFragmentManager().findFragmentById(R.id.frameLayout_detail);
 
-        if (itemDetailFragment == null && findViewById(R.id.item_detail_nav_container) != null) {
+        if (itemDetailFragment == null && findViewById(R.id.frameLayout_detail) != null) {
             itemDetailFragment = new ItemDetailFragment();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.item_detail_nav_container, itemDetailFragment)
+                    .add(R.id.frameLayout_detail, itemDetailFragment)
                     .commit();
         }
     }
@@ -159,13 +159,13 @@ public class MainHostActivity extends AppCompatActivity {
                     startActivity(intentAddHouse);
                     return true;
 
-                case R.id.main_toolbar_modify:
+                case R.id.main_toolbar_edit:
                     if (id != 0) {
                         Intent intentEditHouse = new Intent(MainHostActivity.this, AddEditActivity.class);
                         intentEditHouse.putExtra("id", id);
                         startActivity(intentEditHouse);
                     } else {
-                        Toast.makeText(this, "Vous devez selectione un bien éxistant !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, R.string.select_existing_house, Toast.LENGTH_LONG).show();
                     }
                     return true;
 

@@ -85,7 +85,7 @@ public class ItemDetailFragment extends Fragment implements View.OnClickListener
 
         this.initView();
         this.configureViewModel();
-        //mapView.setOnClickListener(this);
+        mapView.setOnClickListener(this);
 
         return rootView;
     }
@@ -100,8 +100,8 @@ public class ItemDetailFragment extends Fragment implements View.OnClickListener
 
         surface = fragmentItemDetailBinding.fragmentDetailSurfaceValue;
         rooms = fragmentItemDetailBinding.fragmentDetailRoomsValue;
-        bedrooms = fragmentItemDetailBinding.fragmentDetailBedrooms;
-        bathrooms = fragmentItemDetailBinding.fragmentDetailBathrooms;
+        bedrooms = fragmentItemDetailBinding.fragmentDetailBedroomsValue;
+        bathrooms = fragmentItemDetailBinding.fragmentDetailBathroomsValue;
     }
 
     //----------------------------------------------------------------------------------------------
@@ -201,7 +201,7 @@ public class ItemDetailFragment extends Fragment implements View.OnClickListener
             list = list + " " + poi;
         }
 
-        //pointOfInterest.setText(list);
+        fragmentItemDetailBinding.fragmentDetailIpTvValue.setText(list);
         fragmentItemDetailBinding.fragmentDetailAddressValue.setText(house.getAddress());
         fragmentItemDetailBinding.fragmentDetailDescriptionValue.setText(house.getDescription());
         fragmentItemDetailBinding.fragmentDetailAgentValue.setText(house.getRealEstateAgent());
@@ -237,16 +237,21 @@ public class ItemDetailFragment extends Fragment implements View.OnClickListener
 
         Geocoder coder = new Geocoder(getContext());
         List<Address> addresses;
+
         try {
             addresses = coder.getFromLocationName(address, 10);
+
             if (addresses == null) {
             }
+
             Address location = addresses.get(0);
             double lat = location.getLatitude();
             double lng = location.getLongitude();
+
             String url = "https://maps.googleapis.com/maps/api/staticmap?center=" + lat + "," + lng + "&zoom=15&size=200x200" +
                     "&markers=color:red%7C" + lat + "," + lng + "&sensor=false&key=AIzaSyB9cBXJpDqmm_y_NfoEeAzB2bmbQuBO5Y4";
             return url;
+
         } catch (IOException e) {
             e.printStackTrace();
         }

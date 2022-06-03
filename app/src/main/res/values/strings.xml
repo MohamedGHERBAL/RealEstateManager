@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Real Estate Manager</string>
+    <string name="app_name_two">Real Estate Manager (alpha ver.)</string>
+    <string name="add_activity_name">Add property</string>
+    <string name="edit_activity_name">Edit property</string>
+    <string name="search_activity_name">Search property</string>
     <string name="map_activity_name">Map View</string>
     <string name="moneyconverter_activity_name">Money Converter</string>
     <string name="loansimulator_activity_name">Loan Simulator</string>
@@ -13,6 +17,7 @@
 
     <!-- MainHostActivity -->
     <string name="empty_house_list">No house for sale !</string>
+    <string name="select_existing_house">You must select an existing property!</string>
 
     <!-- Drawer Menu -->
     <string name="drawer_menu_open">Open</string>
@@ -35,11 +40,13 @@
     <string name="illustration_title">Illustration</string>
     <string name="illust_textView">TextView</string>
 
-    <string name="surface">Surface</string>
+    <string name="surface">Surface m2</string>
     <string name="number">007</string>
     <string name="number_of_rooms">Number of rooms</string>
     <string name="bedrooms">Number of bedrooms</string>
     <string name="bathroom">Number of bathrooms</string>
+    <string name="important_points">Important points</string>
+    <string name="ip_details">School, shop, transport</string>
     <string name="location">Location</string>
     <string name="address">Address</string>
     <string name="address_detail">Address</string>

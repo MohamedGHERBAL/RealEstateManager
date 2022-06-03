@@ -85,33 +85,46 @@ public class HouseAdapter extends RecyclerView.Adapter<HouseAdapter.ViewHolder> 
     // ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private final OnHouseListener onHouseListener;
         public Resources res;
         private String illustration;
+        private final OnHouseListener onHouseListener;
+        private final TextView sale;
+
 
         // Constructor
         public ViewHolder(View itemView, OnHouseListener onHouseListener) {
             super(itemView);
             Log.i(TAG, "ViewHolder");
 
+            sale = itemView.findViewById(R.id.fragment_main_item_sale_tv);
+
             this.onHouseListener = onHouseListener;
             itemView.setOnClickListener(this);
         }
 
         public void updateHouse(House house) {
-            Log.e(TAG, "ViewHolder - updateHouse");
+            Log.i(TAG, "ViewHolder - updateHouse");
 
             ItemListContentBinding.bind(itemView).fragmentItemCategory.setText(house.getCategory());
             ItemListContentBinding.bind(itemView).fragmentItemCity.setText(house.getDistrict());
 
             if (!house.isAvailable()) {
+                Log.d(TAG, "ViewHolder - updateHouse - IF house.isAvailable");
+
+                ItemListContentBinding.bind(itemView).fragmentMainItemSoldTv.setVisibility(View.VISIBLE);
+
                 ItemListContentBinding.bind(itemView).fragmentMainItemSaleTv.setVisibility(View.VISIBLE);
-                ItemListContentBinding.bind(itemView).fragmentMainItemSaleTv.setText(R.string.sold_the_date + house.getDateOfSale());
+                ItemListContentBinding.bind(itemView).fragmentMainItemSaleTv.setText("SOLD THE " + house.getDateOfSale());
+            } else {
+                Log.d(TAG, "ViewHolder - updateHouse - house.isAvailable ELSE");
+
+                ItemListContentBinding.bind(itemView).fragmentMainItemSoldTv.setVisibility(View.GONE);
+                ItemListContentBinding.bind(itemView).fragmentMainItemSaleTv.setVisibility(View.GONE);
             }
 
             RequestOptions myOptions = new RequestOptions()
                     .centerCrop()
-                    .override(100, 100);
+                    .override(500, 500);
 
             boolean isEuro = house.isEuro();
 
@@ -124,12 +137,8 @@ public class HouseAdapter extends RecyclerView.Adapter<HouseAdapter.ViewHolder> 
             }
 
             if (house.getIllustration().isEmpty()) {
-                ItemListContentBinding.bind(itemView).fragmentItemImage.setImageResource(R.drawable.sold_logo);
+                ItemListContentBinding.bind(itemView).fragmentItemImage.setImageResource(R.drawable.ic_baseline_house_24);
 
-                if (house.isAvailable() == false) {
-                    int color = Color.parseColor("#80FF333F");
-                    ItemListContentBinding.bind(itemView).fragmentItemImage.setColorFilter(color);
-                }
             } else {
                 illustration = Utils.getIllustrationFromDevice(house);
 
@@ -137,11 +146,6 @@ public class HouseAdapter extends RecyclerView.Adapter<HouseAdapter.ViewHolder> 
                         .load(illustration)
                         .apply(myOptions)
                         .into(ItemListContentBinding.bind(itemView).fragmentItemImage);
-
-                if (house.isAvailable() == false) {
-                    int color = Color.parseColor("#80FF333F");
-                    ItemListContentBinding.bind(itemView).fragmentItemImage.setColorFilter(color);
-                }
             }
         }
 

@@ -10,7 +10,7 @@
     </item>
 
     <item
-        android:id="@+id/main_toolbar_modify"
+        android:id="@+id/main_toolbar_edit"
         android:icon="@drawable/ic_baseline_create_24"
         android:title="Edit"
         app:showAsAction="ifRoom">

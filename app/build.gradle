@@ -24,6 +24,9 @@ android {
         dataBinding true // For DataBinding
     }
 
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {

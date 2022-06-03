@@ -25,12 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginBottom="485dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.0">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -108,6 +108,17 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_detail_room_imageview" />
 
         <ImageView
+            android:id="@+id/fragment_important_points_iv"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/important_points"
+            android:src="@drawable/ic_baseline_content_paste_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_detail_bedrooms_imageview" />
+
+        <ImageView
             android:id="@+id/fragment_location_imageview"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -116,7 +127,7 @@
             android:contentDescription="@string/address"
             android:src="@drawable/ic_baseline_location_on_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_detail_bathroom_imageview" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_important_points_iv" />
 
         <TextView
             android:id="@+id/fragment_detail_rooms"
@@ -184,6 +195,29 @@
             app:layout_constraintStart_toEndOf="@+id/fragment_detail_bathroom_imageview"
             app:layout_constraintTop_toBottomOf="@+id/fragment_detail_bathrooms" />
 
+        <TextView
+            android:id="@+id/fragment_detail_ip_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            android:text="@string/important_points"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/fragment_important_points_iv"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_detail_bedrooms_value" />
+
+        <TextView
+            android:id="@+id/fragment_detail_ip_tv_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/ip_details"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toEndOf="@+id/fragment_important_points_iv"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_detail_ip_tv" />
+
 
         <TextView
             android:id="@+id/fragment_detail_location"
@@ -195,7 +229,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/fragment_location_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_detail_bedrooms_value" />
+            app:layout_constraintTop_toBottomOf="@+id/fragment_detail_ip_tv_value" />
 
         <TextView
             android:id="@+id/fragment_detail_address_value"
