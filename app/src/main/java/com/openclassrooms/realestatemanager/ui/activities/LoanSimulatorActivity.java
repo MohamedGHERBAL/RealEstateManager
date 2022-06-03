@@ -39,14 +39,11 @@ public class LoanSimulatorActivity extends AppCompatActivity implements View.OnC
         mView = loanSimulatorBinding.getRoot();
         setContentView(mView);
 
-        // Init
-
-
         // Config
         configureActionBar();
 
         // For Calculate Button
-        loanSimulatorBinding.calculateBtn.setOnClickListener(this::onClick);
+        loanSimulatorBinding.calculateBtn.setOnClickListener(this);
     }
 
     public void showLoanResult() {
@@ -54,13 +51,13 @@ public class LoanSimulatorActivity extends AppCompatActivity implements View.OnC
 
         double loanAmount = Integer.parseInt(loanSimulatorBinding.amountCalculatorEdit.getText().toString());
         double interestRate = Double.parseDouble(String.valueOf(loanSimulatorBinding.rateCalculatorEdit.getText()));
-        double loanDuration = Integer.parseInt(loanSimulatorBinding.durationEdit.getText().toString());
+        double loanDuration = Integer.parseInt(loanSimulatorBinding.durationEdit.getText().toString()) * 12;
 
         double monthlyPayment = Utils.calculateMonthlyPayment(interestRate, loanDuration, loanAmount);
         double totalPayment = Utils.calculateTotalPayment(monthlyPayment, loanDuration);
 
-        loanSimulatorBinding.amontPaymentCalculatorTv.setText(R.string.amont_monthly_payment + (new DecimalFormat("##.##").format(monthlyPayment)) + " €");
-        loanSimulatorBinding.costCreditTv.setText(R.string.cost_credit + (new DecimalFormat("##.##").format(totalPayment)) + " €");
+        loanSimulatorBinding.amontPaymentCalculatorTv.setText("Amount of your monthly payments : " + (new DecimalFormat("##.##").format(monthlyPayment)) + " €");
+        loanSimulatorBinding.costCreditTv.setText("Cost of credit : " + (new DecimalFormat("##.##").format(totalPayment)) + " €");
     }
 
     public void onClick(View view) {

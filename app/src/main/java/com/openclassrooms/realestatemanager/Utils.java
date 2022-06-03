@@ -189,7 +189,8 @@ public class Utils {
      * Use for LoanSimulator
      */
     public static double calculateMonthlyPayment(double interestRate,
-                                                 double loanDuration, double loanAmount) {
+                                                 double loanDuration,
+                                                 double loanAmount) {
         Log.i(TAG, "calculateMonthlyPayment");
 
         double r = interestRate / 1200;
